@@ -1,0 +1,29 @@
+
+<h1>Edit Post</h1>
+<% provide(:title, "Edit Post") %>
+<%= form_with(model: @post, local: true) do |form| %>
+    <% if @post.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+            <ul>
+                <% @post.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group w-25">
+        <%= form.label :title , class: 'form-label'%>
+        <%= form.text_field :title , class: 'form-control'%>
+    </div>
+
+    <div class="form-group mt-2 w-50">
+        <%= form.label :content, class: 'form-label' %>
+        <%= form.text_area :content , class: 'form-control'%>
+    </div>
+
+    <div class="actions">
+        <%= form.submit "Update Post" , class: 'btn btn-secondary mt-3'%>
+    </div>
+<% end %>
